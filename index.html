@@ -1278,23 +1278,44 @@
       .overview-card { grid-template-columns: 1fr; }
     }
     @media print {
-      body * {
-        visibility: hidden;
-      }
-      #certificatePage,
-      #certificatePage * {
-        visibility: visible;
-      }
-      #certificatePage {
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
+      html,
+      body {
         width: 100%;
+        height: 100%;
+        margin: 0;
+        background: #fff;
+      }
+      body > *:not(main),
+      main > *:not(#certificatePage) {
+        display: none !important;
+      }
+      main {
+        width: 100%;
+        height: 100%;
+        margin: 0;
         padding: 0;
       }
+      #certificatePage {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        overflow: hidden;
+        page-break-after: avoid;
+      }
+      .certificate {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        padding: .45in;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
       @page {
-        size: landscape;
+        size: letter landscape;
         margin: .35in;
       }
     }
